@@ -31,7 +31,15 @@ class StudentsController < ApplicationController
     private
        
        
- 
+      # We pass the permitted fields in as *args;
+      # this keeps `post_params` pretty dry while
+      # still allowing slightly different behavior
+      # depending on the controller action. This
+      # should come after the other methods
+       
+      def student_params(*args)
+          params.require(:student).permit(*args)
+      end
   
   end
   
